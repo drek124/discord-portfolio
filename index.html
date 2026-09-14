@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="nuggie">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DREK | Bot Portfolio</title>
+<meta name="description" content="Drek builds Discord bots that survive contact with real servers: economy minigames, join gates, ML bot detection, anti-nuke defence, Notion-synced task boards, agentic AI and native join-to-create voice hubs.">
+<meta name="theme-color" content="#07080f">
+<meta property="og:title" content="DREK | Bot Portfolio">
+<meta property="og:description" content="Economy minigames, join gates, ML bot detection, anti-nuke defence, agentic AI and native join-to-create voice hubs.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/emotes/peanut-01.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="page-progress" aria-hidden="true"><span id="pageProgress"></span></div>
+
+<div class="ambient" aria-hidden="true">
+  <div class="ambient-orb ambient-orb--blurple"></div>
+  <div class="ambient-orb ambient-orb--ember"></div>
+  <div class="ambient-orb ambient-orb--rose"></div>
+  <div class="ambient-grid"></div>
+  <canvas id="particles"></canvas>
+  <div class="ambient-noise"></div>
+  <div class="ambient-vignette"></div>
+</div>
+
+<header class="topbar" id="topbar">
+  <div class="shell topbar__inner">
+    <a class="brand" href="#hero">
+      <span class="brand__mark">
+        <img src="assets/emotes/peanut-03.png" alt="" width="700" height="700" loading="eager" decoding="async">
+      </span>
+      <span class="brand__text">
+        <strong>DREK</strong>
+        <em style="margin-top: 5px">Discord Bot Developer</em>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Section navigation">
+      <a href="#arsenal">Arsenal</a>
+      <a href="#lab">Live Lab</a>
+      <a href="#emotes">Emotes</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="topbar__actions">
+      <button class="icon-btn" id="soundToggle" type="button" aria-pressed="true" title="Interface sounds are on">
+        <svg class="icon-btn__icon icon-btn__icon--on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 9.6v4.8a1.2 1.2 0 0 0 1.2 1.2h2.1L11.6 19V5L7.3 8.4H5.2A1.2 1.2 0 0 0 4 9.6z"></path>
+          <path d="M15.2 9.3a3.9 3.9 0 0 1 0 5.4"></path>
+          <path d="M17.9 6.6a7.6 7.6 0 0 1 0 10.8"></path>
+        </svg>
+        <svg class="icon-btn__icon icon-btn__icon--off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 9.6v4.8a1.2 1.2 0 0 0 1.2 1.2h2.1L11.6 19V5L7.3 8.4H5.2A1.2 1.2 0 0 0 4 9.6z"></path>
+          <path d="M15.4 9.6l5 4.8M20.4 9.6l-5 4.8"></path>
+        </svg>
+        <span class="sr-only" data-sound-label>Mute interface sounds</span>
+      </button>
+      <a class="btn btn--ghost btn--sm" href="#contact">Hire Drek</a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" id="hero">
+  <div class="shell hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow" data-reveal>
+        <span class="pulse-dot"></span>
+        Available for Discord bot contracts
+      </p>
+
+      <h1 class="hero__title">
+        <span class="line" data-reveal>I build Discord bots</span>
+        <span class="line" data-reveal>that <span class="gradient-text" data-scramble="survive">survive</span></span>
+        <span class="line" data-reveal>real servers.</span>
+      </h1>
+
+      <p class="hero__lede" data-reveal>
+        I am <strong>Drek</strong>. I ship Discord servers what's missing:
+        deep economy minigames, joingate CAPTCHA,
+        machine learning that flags bots from their <em>names</em>, an anti-nuke tripwire
+        that is razor-sharp on channel deletions, Notion-integrated task boards, agentic AI that
+        edits your server from a secure sandbox, and native join-to-create voice chat lounges.
+        And for a bonus, custom emojis.
+      </p>
+
+      <div class="hero__cta" data-reveal>
+        <a class="btn btn--primary" href="#lab">
+          <span>Live demos</span>
+          <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="btn btn--outline" href="#arsenal">See what's up</a>
+      </div>
+
+      <dl class="stats" data-reveal>
+        <div class="stat">
+          <dt>Bots shipped</dt>
+          <dd><span class="count" data-count="6">0</span>+</dd>
+        </div>
+        <div class="stat">
+          <dt>Bots flagged</dt>
+          <dd><span class="count" data-count="500">0</span>+</dd>
+        </div>
+        <div class="stat">
+          <dt>Nuke response</dt>
+          <dd><span class="count" data-count="400" data-prefix="&lt;" data-suffix="ms">0ms</span></dd>
+        </div>
+        <div class="stat">
+          <dt>Features</dt>
+          <dd><span class="count" data-count="100">0</span>+</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="hero__visual" data-reveal>
+      <div class="mascot-stage" id="mascotStage">
+        <div class="mascot-stage__rings" aria-hidden="true">
+          <span class="ring ring--1"></span>
+          <span class="ring ring--2"></span>
+          <span class="ring ring--3"></span>
+        </div>
+        <div class="mascot-stage__parallax" aria-hidden="true">
+          <div class="mascot-stage__glow"></div>
+        </div>
+        <img class="mascot-stage__img" id="mascotMain" src="assets/emotes/peanut-01.png" alt="Peanut, the bot mascot, waving" width="700" height="700" decoding="async">
+        <div class="mascot-stage__badge">
+          <span class="mascot-stage__badge-dot"></span>
+          Drek is watching
+        </div>
+      </div>
+
+      <div class="emote-swapper" id="emoteSwapper" role="group" aria-label="Swap the mascot emote">
+        <button type="button" class="swatch is-active" data-emote="assets/emotes/peanut-01.png" data-alt="Peanut waving hello">
+          <img src="assets/emotes/peanut-01.png" alt="Waving" width="700" height="700" loading="lazy" decoding="async">
+        </button>
+        <button type="button" class="swatch" data-emote="assets/emotes/peanut-02.png" data-alt="Peanut holding a green tick">
+          <img src="assets/emotes/peanut-02.png" alt="Approved" width="700" height="700" loading="lazy" decoding="async">
+        </button>
+        <button type="button" class="swatch" data-emote="assets/emotes/peanut-07.png" data-alt="Peanut holding a red cross">
+          <img src="assets/emotes/peanut-07.png" alt="Denied" width="700" height="700" loading="lazy" decoding="async">
+        </button>
+        <button type="button" class="swatch" data-emote="assets/emotes/peanut-16.png" data-alt="Peanut in sunglasses giving a thumbs up">
+          <img src="assets/emotes/peanut-16.png" alt="Cool" width="800" height="800" loading="lazy" decoding="async">
+        </button>
+        <button type="button" class="swatch" data-emote="assets/emotes/peanut-15.png" data-alt="Peanut looking annoyed with arms crossed">
+          <img src="assets/emotes/peanut-15.png" alt="Annoyed" width="800" height="800" loading="lazy" decoding="async">
+        </button>
+        <button type="button" class="swatch" data-emote="assets/emotes/peanut-13.png" alt="Peanut crying" data-emote="assets/emotes/peanut-13.png" data-alt="Peanut crying loudly">
+          <img src="assets/emotes/peanut-13.png" alt="Crying" width="800" height="800" loading="lazy" decoding="async">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__terminal" data-reveal>
+    <div class="terminal">
+      <div class="terminal__bar">
+        <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
+        <span class="terminal__title">bot@drek:~ /gateway</span>
+      </div>
+      <pre class="terminal__body" id="bootTerminal" aria-live="polite"></pre>
+    </div>
+  </div>
+</section>
+
+<section class="marquee-band" aria-hidden="true">
+  <div class="marquee" id="marquee">
+    <div class="marquee__track">
+      <span>Economy Minigames</span><span class="sep">&#9670;</span>
+      <span>Join Gate CAPTCHA</span><span class="sep">&#9670;</span>
+      <span>ML Bot-Name Detection</span><span class="sep">&#9670;</span>
+      <span>Anti-Nuke Defence</span><span class="sep">&#9670;</span>
+      <span>Notion Task Sync</span><span class="sep">&#9670;</span>
+      <span>Agentic Server AI</span><span class="sep">&#9670;</span>
+      <span>Join-To-Create Voice</span><span class="sep">&#9670;</span>
+      <span>Custom Mascot Emotes</span><span class="sep">&#9670;</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="arsenal">
+  <div class="shell">
+    <header class="section__head">
+      <p class="eyebrow" data-reveal>01 &mdash; The Arsenal</p>
+      <h2 class="section__title" data-reveal>Six systems that carry whole servers</h2>
+      <p class="section__lede" data-reveal>
+        Every one of these is production code carefully designed and developed. 
+        Check out the details, then try them yourself.
+      </p>
+    </header>
+
+    <div class="arsenal-grid">
+
+      <article class="feature-card" data-tilt data-accent="ember" data-reveal>
+        <div class="feature-card__beam" aria-hidden="true"></div>
+        <div class="feature-card__spot" aria-hidden="true"></div>
+        <div class="feature-card__head">
+          <span class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M14.8 9.2 13 13l-3.8 1.8L11 11z"></path>
+              <path d="M12 3v2M12 19v2M3 12h2M19 12h2"></path>
+            </svg>
+          </span>
+          <span class="feature-card__index">01</span>
+        </div>
+        <h3>Advanced Economy Minigames</h3>
+        <p>
+          A full in-server economy built on <strong>d$</strong> &mdash; the drek dolar. Wallets,
+          banks, interest, shops, inventories and a stack of minigames. Multiplayer or alone, both work!
+          Start your business and employ other players, or get yourself employed.
+        </p>
+        <ul class="tag-list">
+          <li>Slot machine</li><li>Blackjack</li><li>Crimes</li><li>Bets</li><li>Virtual economy</li>
+        </ul>
+        <div class="feature-card__foot">
+          <span class="chip chip--ember">Engagement engine</span>
+          <a class="feature-card__link" href="#lab-economy">Try it <span aria-hidden="true">&darr;</span></a>
+        </div>
+      </article>
+
+      <article class="feature-card" data-tilt data-accent="blurple" data-reveal>
+        <div class="feature-card__beam" aria-hidden="true"></div>
+        <div class="feature-card__spot" aria-hidden="true"></div>
+        <div class="feature-card__head">
+          <span class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="10.5" width="16" height="10" rx="2.5"></rect>
+              <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"></path>
+              <path d="M12 14.5v2.5"></path>
+            </svg>
+          </span>
+          <span class="feature-card__index">02</span>
+        </div>
+        <h3>Join Gate CAPTCHA</h3>
+        <p>
+          Strict or not, it is your choice. Make it strict to force every new user to do a CAPTCHA challenge before they access anything, 
+          or let <em>Drek AI</em> decide who should be let go, and who is suspicious.
+        </p>
+        <ul class="tag-list">
+          <li>Quarantine role</li><li>Zalgo-obscured prompt</li><li>Smart logic</li><li>Raid throttle</li>
+        </ul>
+        <div class="feature-card__foot">
+          <span class="chip chip--blurple">Raid defence</span>
+          <a class="feature-card__link" href="#lab-gate">Try it <span aria-hidden="true">&darr;</span></a>
+        </div>
+      </article>
+
+      <article class="feature-card" data-tilt data-accent="mint" data-reveal>
+        <div class="feature-card__beam" aria-hidden="true"></div>
+        <div class="feature-card__spot" aria-hidden="true"></div>
+        <div class="feature-card__head">
+          <span class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 18V6a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" opacity="0.5"></path>
+              <path d="M9 13.5 11 15.5 15.5 11"></path>
+            </svg>
+          </span>
+          <span class="feature-card__index">03</span>
+        </div>
+        <h3>ML Bot-Name Detection</h3>
+        <p>
+          A trained <em>machine learning</em> system reads the content of a username &mdash; is it suspicious? Flag & notify the moderators. 
+          Otherwise, let them through.
+        </p>
+        <ul class="tag-list">
+          <li>Character n-grams</li><li>Entropy scoring</li><li>Confidence bands</li><li>Explainable flags</li>
+        </ul>
+        <p class="feature-card__disclaimer">
+          * The demo on this page is a lightweight simulation of the concept, not my production
+          model. The real classifier is trained on far more data with a deeper feature set, so
+          treat the numbers below as illustrative only.
+        </p>
+        <div class="feature-card__foot">
+          <span class="chip chip--mint">Machine learning</span>
+          <a class="feature-card__link" href="#lab-ml">Try it <span aria-hidden="true">&darr;</span></a>
+        </div>
+      </article>
+
+      <article class="feature-card" data-tilt data-accent="rose" data-reveal>
+        <div class="feature-card__beam" aria-hidden="true"></div>
+        <div class="feature-card__spot" aria-hidden="true"></div>
+        <div class="feature-card__head">
+          <span class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3 4.5 6v6c0 4.4 3.1 7.7 7.5 9 4.4-1.3 7.5-4.6 7.5-9V6z"></path>
+              <path d="M8.8 12.2 11.2 14.6 15.4 10"></path>
+            </svg>
+          </span>
+          <span class="feature-card__index">04</span>
+        </div>
+        <h3>Anti-Nuker</h3>
+        <p>
+          You're paranoid about your server. Well you can rest easy at night knowing your server's modification events are being actively & carefully monitored by an intelligent & carefully crafted system.
+          Optimized to act quickly and stop any deeper damage from happening.
+        </p>
+        <ul class="tag-list">
+          <li>Strict tripwires</li><li>Channel-wipe priority</li><li>Auto-quaratine</li><li>Damage report</li>
+        </ul>
+        <div class="feature-card__foot">
+          <span class="chip chip--rose">Server survival</span>
+          <a class="feature-card__link" href="#lab-nuke">Try it <span aria-hidden="true">&darr;</span></a>
+        </div>
+      </article>
+
+      <article class="feature-card" data-tilt data-accent="blurple" data-reveal>
+        <div class="feature-card__beam" aria-hidden="true"></div>
+        <div class="feature-card__spot" aria-hidden="true"></div>
+        <div class="feature-card__head">
+          <span class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3.5" y="3.5" width="17" height="17" rx="2.5"></rect>
+              <path d="M9 3.5v17M3.5 9h5.5M14 8.5h3.5M14 12h3.5"></path>
+            </svg>
+          </span>
+          <span class="feature-card__index">05</span>
+        </div>
+        <h3>Notion API Boards</h3>
+        <p>
+          Your team already lives in platforms Notion, so the bot reads it. Databases are polled and
+          mirrored into live Discord boards with status columns, assignments & due-date notifications.
+        </p>
+        <ul class="tag-list">
+          <li>Database sync</li><li>Status columns</li><li>Due-date alerts</li>
+        </ul>
+        <div class="feature-card__foot">
+          <span class="chip chip--blurple">Team ops</span>
+          <a class="feature-card__link" href="#lab-notion">Try it <span aria-hidden="true">&darr;</span></a>
+        </div>
+      </article>
+
+      <article class="feature-card" data-tilt data-accent="mint" data-reveal>
+        <div class="feature-card__beam" aria-hidden="true"></div>
+        <div class="feature-card__spot" aria-hidden="true"></div>
+        <div class="feature-card__head">
+          <span class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M4.2 16.5l2.6-1.5M17.2 9l2.6-1.5"></path>
+              <circle cx="12" cy="12" r="3.4"></circle>
+            </svg>
+          </span>
+          <span class="feature-card__index">06</span>
+        </div>
+        <h3>Agentic Server AI</h3>
+        <p>
+          An AI agent running inside an intelligent sandbox which makes the 
+          chance of breaking anything basically zero. Describe the change in plain
+          language and it creates and edits channels and roles, fixes permissions and general
+          settings, and executes the whole plan on its own.
+        </p>
+        <ul class="tag-list">
+          <li>Tool calling</li><li>Channel + role edits</li><li>Sealed sandbox</li><li>Secure permission editing system</li>
+        </ul>
+        <div class="feature-card__foot">
+          <span class="chip chip--mint">Agentic AI</span>
+          <a class="feature-card__link" href="#lab-agent">Try it <span aria-hidden="true">&darr;</span></a>
+        </div>
+      </article>
+
+    </div>
+
+    <article class="feature-card feature-card--wide" data-tilt data-accent="ember" data-reveal>
+      <div class="feature-card__beam" aria-hidden="true"></div>
+      <div class="feature-card__spot" aria-hidden="true"></div>
+      <div class="feature-card--wide__text">
+        <div class="feature-card__head">
+          <span class="feature-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 4v16M8 7v5a4 4 0 0 0 8 0V7"></path>
+              <rect x="5" y="3" width="14" height="4" rx="2"></rect>
+              <rect x="7" y="18" width="10" height="3" rx="1.5"></rect>
+            </svg>
+          </span>
+          <span class="feature-card__index">07</span>
+        </div>
+        <h3>Join-to-Create Custom Voice Chat</h3>
+        <p>
+          Members join a gate VC and instantly get their own voice room they fully control
+          <em>natively in Discord</em> &mdash; renames, user limits, locks, hidden rooms and
+          per-user permission grants, all through the voice channel's own interface.
+        </p>
+        <ul class="tag-list">
+          <li>Dynamic hub</li><li>Native owner controls</li><li>Permission editing</li>
+        </ul>
+        <div class="feature-card__foot">
+          <span class="chip chip--ember">Voice infrastructure</span>
+          <a class="feature-card__link" href="#lab-voice">Configure a room <span aria-hidden="true">&darr;</span></a>
+        </div>
+      </div>
+      <div class="feature-card--wide__art" aria-hidden="true">
+        <div class="boom" id="voiceBoom">
+          <div class="boom__row">
+            <span class="boom__avatar" style="--h:265">A</span>
+            <span class="boom__bar" style="--w:78%"></span>
+          </div>
+          <div class="boom__row">
+            <span class="boom__avatar" style="--h:200">M</span>
+            <span class="boom__bar" style="--w:62%"></span>
+          </div>
+          <div class="boom__row boom__row--active">
+            <span class="boom__avatar" style="--h:25">R</span>
+            <span class="boom__bar" style="--w:90%"></span>
+          </div>
+          <div class="boom__row">
+            <span class="boom__avatar" style="--h:150">K</span>
+            <span class="boom__bar" style="--w:48%"></span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section section--tight" id="lab">
+  <div class="shell">
+    <header class="section__head section__head--center">
+      <p class="eyebrow" data-reveal>02 &mdash; The Live Lab</p>
+      <h2 class="section__title" data-reveal>Drive the systems yourself</h2>
+      <p class="section__lede" data-reveal>
+        Faithful front-end simulations of how each bot feature behaves in a server. Experiment,
+        break things, watch the response. Everything here runs in your browser.
+      </p>
+    </header>
+  </div>
+</section>
+
+<section class="lab-block" id="lab-economy">
+  <div class="shell lab-block__grid">
+    <div class="lab-block__intro" data-reveal>
+      <span class="lab-block__num">01</span>
+      <h3>Economy Minigames</h3>
+      <p>
+        Spin the reels with real odds tables, claim your hourly reward, then push your luck on a
+        coinflip.
+      </p>
+      <ul class="check-list">
+        <li>Odds tables tuned per icon</li>
+        <li>Hourly cooldown with streak bonus</li>
+        <li>Bank protection against bad bets</li>
+      </ul>
+    </div>
+
+    <div class="disk disk--economy" data-reveal>
+      <div class="disk__bar">
+        <span class="disk__dot"></span>
+        <span class="disk__label">#economy &middot; drek-casino</span>
+        <span class="disk__live">LIVE</span>
+      </div>
+      <div class="disk__body">
+        <div class="wallet">
+          <div class="wallet__main">
+            <span class="wallet__label">Wallet</span>
+            <span class="wallet__value" id="ecoBalance">1,000</span>
+            <span class="wallet__unit">d$</span>
+          </div>
+          <div class="wallet__side">
+            <span class="wallet__label">Net this session</span>
+            <span class="wallet__delta" id="ecoDelta">+0</span>
+          </div>
+        </div>
+
+        <div class="slots" id="slots">
+          <div class="slots__window">
+            <div class="reel" data-reel><div class="reel__strip"></div></div>
+            <div class="reel" data-reel><div class="reel__strip"></div></div>
+            <div class="reel" data-reel><div class="reel__strip"></div></div>
+          </div>
+          <div class="slots__payline" aria-hidden="true"></div>
+          <div class="slots__msg" id="slotMsg">Place your bet and pull.</div>
+        </div>
+
+        <div class="bet-row">
+          <label class="bet-row__label" for="betInput">Bet</label>
+          <input class="bet-row__input" id="betInput" type="number" min="10" max="100000" step="10" value="50">
+          <div class="bet-row__quick">
+            <button type="button" class="mini-btn" data-bet="50">50</button>
+            <button type="button" class="mini-btn" data-bet="250">250</button>
+            <button type="button" class="mini-btn" data-bet="1000">1k</button>
+            <button type="button" class="mini-btn" data-bet="half">Half</button>
+            <button type="button" class="mini-btn" data-bet="all">All in</button>
+          </div>
+        </div>
+
+        <div class="lab-actions">
+          <button type="button" class="btn btn--primary btn--sm" id="spinBtn">
+            <span>Spin</span>
+          </button>
+          <button type="button" class="btn btn--outline btn--sm" id="dailyBtn">Claim hourly</button>
+          <button type="button" class="btn btn--outline btn--sm" id="flipBtn">Coinflip double-or-nothing</button>
+        </div>
+
+        <div class="lab-log" id="ecoLog" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lab-block lab-block--flip" id="lab-gate">
+  <div class="shell lab-block__grid">
+    <div class="lab-block__intro" data-reveal>
+      <span class="lab-block__num">02</span>
+      <h3>Join Gate CAPTCHA</h3>
+      <p>
+        A user lands in quarantine with no access to other channels. 
+        The gate posts a color name, and then you press the button of that color. The
+        instruction carries a light zalgo distortion so bot scrapers read noise while members
+        read it normally.
+      </p>
+      <ul class="check-list">
+        <li>Zero-permission quarantine role</li>
+        <li>Colour-name challenge on buttons</li>
+        <li>Zalgo-obscured prompt text</li>
+        <li>Strike tracking with auto-kick</li>
+      </ul>
+    </div>
+
+    <div class="disk disk--gate" data-reveal>
+      <div class="disk__bar">
+        <span class="disk__dot"></span>
+        <span class="disk__label">#verification-gate</span>
+        <span class="disk__live" id="gateState">QUARANTINED</span>
+      </div>
+      <div class="disk__body">
+        <div class="gate-head">
+          <div class="gate-head__who">
+            <span class="gate-head__avatar">?</span>
+            <div>
+              <strong id="gateUser">Raid_Account_8842</strong>
+              <span>joined 0.4s ago &middot; account age 2d</span>
+            </div>
+          </div>
+          <div class="gate-head__timer">
+            <svg viewBox="0 0 36 36" class="ring-timer" aria-hidden="true">
+              <circle class="ring-timer__bg" cx="18" cy="18" r="15.5"></circle>
+              <circle class="ring-timer__fg" id="gateTimerRing" cx="18" cy="18" r="15.5"></circle>
+            </svg>
+            <span id="gateTimerText">20s</span>
+          </div>
+        </div>
+
+        <p class="gate-prompt" id="gatePrompt">Press the button with the color: <strong>red</strong>.</p>
+
+        <div class="colour-grid" id="colourGrid" role="group" aria-label="Colour verification buttons"></div>
+
+        <div class="lab-actions">
+          <button type="button" class="btn btn--outline btn--sm" id="gateReset">Reset gate</button>
+        </div>
+
+        <div class="lab-log" id="gateLog" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lab-block" id="lab-ml">
+  <div class="shell lab-block__grid">
+    <div class="lab-block__intro" data-reveal>
+      <span class="lab-block__num">03</span>
+      <h3>ML Bot-Name Detection</h3>
+      <p>
+        Paste in a username and the classifier scores it live.
+      </p>
+      <ul class="check-list">
+        <li>Character n-gram model</li>
+        <li>Entropy and keyboard-run features</li>
+        <li>Per-signal explanations</li>
+      </ul>
+      <p class="lab-note">
+        <span class="lab-note__mark">*</span>
+        <span class="lab-note__text">
+          What runs on this page is a simplified & browser-side simulation of the
+          concept, it is <em>not</em> my production model and does not operate at its
+          level. The real classifier trains on a much larger bot-name datasets with a much deeper
+          feature pipeline. Use this to feel the idea, but not to judge the model.
+        </span>
+      </p>
+    </div>
+
+    <div class="disk disk--ml" data-reveal>
+      <div class="disk__bar">
+        <span class="disk__dot"></span>
+        <span class="disk__label">#mod-tools &middot; drek-guard</span>
+        <span class="disk__live">SIMULATION</span>
+      </div>
+      <div class="disk__body">
+        <div class="ml-input">
+          <input class="ml-input__field" id="mlName" type="text" value="xX_DragonSlayer_Xx" spellcheck="false" maxlength="40" aria-label="Username to analyse">
+          <button type="button" class="btn btn--primary btn--sm" id="mlScan">Analyse</button>
+        </div>
+
+        <div class="ml-samples">
+          <span class="ml-samples__label">or load a sample:</span>
+          <button type="button" class="mini-btn" data-sample="xX_DragonSlayer_Xx">human</button>
+          <button type="button" class="mini-btn" data-sample="qz7f2k9wlm41">bot</button>
+          <button type="button" class="mini-btn" data-sample="DrekFan99">borderline</button>
+          <button type="button" class="mini-btn" data-sample="discorduser2024">spam wave</button>
+        </div>
+
+        <div class="ml-gauge">
+          <div class="ml-gauge__meta">
+            <span>Bot likelihood</span>
+            <strong id="mlVerdict">awaiting input</strong>
+          </div>
+          <div class="ml-gauge__track">
+            <span class="ml-gauge__fill" id="mlFill"></span>
+            <span class="ml-gauge__mark" style="--at:35%">review</span>
+            <span class="ml-gauge__mark" style="--at:68%">block</span>
+          </div>
+          <div class="ml-gauge__pct"><span id="mlScore">0.0</span>%</div>
+        </div>
+
+        <div class="ml-signals" id="mlSignals"></div>
+        <div class="lab-log" id="mlLog" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lab-block lab-block--flip" id="lab-nuke">
+  <div class="shell lab-block__grid">
+    <div class="lab-block__intro" data-reveal>
+      <span class="lab-block__num">04</span>
+      <h3>Anti-Nuker</h3>
+      <p>
+        The tripwire watches destructive intent instead waiting for the aftermath. 
+        Tuned & optimized to act fast to prevent deeper damage.
+      </p>
+      <ul class="check-list">
+        <li>Channel deletions weighted heaviest</li>
+        <li>Roles removal and quarantine of the suspect</li>
+        <li>Quarantine can only be undone by the server owner</li>
+        <li>Damage report</li>
+      </ul>
+    </div>
+
+    <div class="disk disk--nuke" data-reveal>
+      <div class="disk__bar">
+        <span class="disk__dot"></span>
+        <span class="disk__label">#security &middot; tripwire</span>
+        <span class="disk__live" id="nukeState">ARMED</span>
+      </div>
+      <div class="disk__body">
+        <div class="shield">
+          <div class="shield__visual">
+            <div class="shield__core" id="shieldCore">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3 4.5 6v6c0 4.4 3.1 7.7 7.5 9 4.4-1.3 7.5-4.6 7.5-9V6z"></path>
+              </svg>
+            </div>
+            <svg class="shield__ring" viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="shield__ring-bg" cx="60" cy="60" r="52"></circle>
+              <circle class="shield__ring-fg" id="threatRing" cx="60" cy="60" r="52"></circle>
+            </svg>
+          </div>
+          <div class="shield__readout">
+            <span class="shield__label">Threat score</span>
+            <strong id="threatScore">0</strong>
+            <span class="shield__sub">threshold <b id="threatMax">100</b></span>
+            <div class="shield__incidents">Incidents logged: <b id="incidentCount">0</b></div>
+          </div>
+        </div>
+
+        <div class="lab-actions">
+          <button type="button" class="btn btn--outline btn--sm" data-nuke="channels">Delete 3 channels</button>
+          <button type="button" class="btn btn--outline btn--sm" data-nuke="roles">Delete a role</button>
+          <button type="button" class="btn btn--outline btn--sm" data-nuke="bans">Ban wave x4</button>
+          <button type="button" class="btn btn--outline btn--sm" data-nuke="webhooks">Create webhooks</button>
+          <button type="button" class="btn btn--primary btn--sm" data-nuke="raid">Simulate full nuke</button>
+          <button type="button" class="btn btn--ghost btn--sm" id="nukeReset">Re-arm</button>
+        </div>
+
+        <div class="lab-log lab-log--tall" id="nukeLog" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lab-block" id="lab-notion">
+  <div class="shell lab-block__grid">
+    <div class="lab-block__intro" data-reveal>
+      <span class="lab-block__num">05</span>
+      <h3>Notion Boards</h3>
+      <p>
+        Your Notion database, mirrored into Discord as a live board.
+      </p>
+      <ul class="check-list">
+        <li>Paginated database reads</li>
+        <li>Status and assignee mapping</li>
+        <li>Relational DB</li>
+      </ul>
+    </div>
+
+    <div class="disk disk--notion" data-reveal>
+      <div class="disk__bar">
+        <span class="disk__dot"></span>
+        <span class="disk__label">#team-tasks &middot; notion bridge</span>
+        <span class="disk__live" id="notionSyncState">IDLE</span>
+      </div>
+      <div class="disk__body">
+        <div class="lab-actions lab-actions--spread">
+          <button type="button" class="btn btn--primary btn--sm" id="notionSync">Sync from Notion</button>
+          <span class="notion-meta">Database <b>Team Tasks</b> &middot; <b id="notionCount">0</b> pages</span>
+        </div>
+
+        <div class="board" id="board">
+          <div class="board__col" data-status="Backlog">
+            <div class="board__col-head"><span>Backlog</span><b data-count-for="Backlog">0</b></div>
+            <div class="board__list" data-drop="Backlog"></div>
+          </div>
+          <div class="board__col" data-status="In Progress">
+            <div class="board__col-head"><span>In Progress</span><b data-count-for="In Progress">0</b></div>
+            <div class="board__list" data-drop="In Progress"></div>
+          </div>
+          <div class="board__col" data-status="Review">
+            <div class="board__col-head"><span>Review</span><b data-count-for="Review">0</b></div>
+            <div class="board__list" data-drop="Review"></div>
+          </div>
+          <div class="board__col" data-status="Done">
+            <div class="board__col-head"><span>Done</span><b data-count-for="Done">0</b></div>
+            <div class="board__list" data-drop="Done"></div>
+          </div>
+        </div>
+
+        <div class="lab-log" id="notionLog" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lab-block lab-block--flip" id="lab-agent">
+  <div class="shell lab-block__grid">
+    <div class="lab-block__intro" data-reveal>
+      <span class="lab-block__num">06</span>
+      <h3>Agentic Server AI</h3>
+      <p>
+        Give the Agent what you need, and let it take over. The AI is <em>securely sandboxed</em>, and for security reasons it doesn't have the tools to delete channels or roles.
+      </p>
+      <ul class="check-list">
+        <li>Natural-language planning</li>
+        <li>Structured tool calls</li>
+        <li>Sealed sandbox</li>
+        <li>Full change log after every run</li>
+      </ul>
+    </div>
+
+    <div class="disk disk--agent" data-reveal>
+      <div class="disk__bar">
+        <span class="disk__dot"></span>
+        <span class="disk__label">#agent-console &middot; drek-ops</span>
+        <span class="disk__live">SANDBOXED</span>
+      </div>
+      <div class="disk__body">
+        <div class="agent-prompts" id="agentPrompts">
+          <button type="button" class="mini-btn" data-prompt="Create a squad category with 3 private channels for the tournament team">Squad category + 3 private channels</button>
+          <button type="button" class="mini-btn" data-prompt="Give the Moderator role manage messages and kick members">Fix Moderator permissions</button>
+          <button type="button" class="mini-btn" data-prompt="Lock every public channel down during the raid and announce it">Emergency raid lockdown</button>
+          <button type="button" class="mini-btn" data-prompt="Set up a registration flow with a verify channel and rules post">Registration flow</button>
+        </div>
+
+        <div class="agent-console">
+          <div class="agent-console__plan" id="agentPlan">
+            <p class="agent-console__hint">Pick a goal above and the agent plans and executes it.</p>
+          </div>
+          <div class="agent-console__actions">
+            <button type="button" class="btn btn--outline btn--sm" id="agentClear">Clear console</button>
+          </div>
+          <p class="agent-console__sandbox">
+            Sandbox guard: every call is scoped, reversible and pre-validated, so the agent
+            cannot damage the guild even if a plan is wrong.
+          </p>
+        </div>
+
+        <div class="lab-log lab-log--tall" id="agentLog" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lab-block" id="lab-voice">
+  <div class="shell lab-block__grid">
+    <div class="lab-block__intro" data-reveal>
+      <span class="lab-block__num">07</span>
+      <h3>Join-to-Create Custom VC</h3>
+      <p>
+        Build the room exactly how members will see it. Block users or roles from accessing your VC, or just lock it completely!
+      </p>
+      <ul class="check-list">
+        <li>Templated channel names</li>
+        <li>Native owner control surface</li>
+        <li>Live permission mirroring</li>
+        <li>Per-member block list</li>
+      </ul>
+    </div>
+
+    <div class="disk disk--voice" data-reveal>
+      <div class="disk__bar">
+        <span class="disk__dot"></span>
+        <span class="disk__label">#voice-hub</span>
+        <span class="disk__live" id="vcState">HUB READY</span>
+      </div>
+      <div class="disk__body">
+        <div class="vc-builder">
+          <div class="vc-field">
+            <label for="vcTemplate">Room name template</label>
+            <input id="vcTemplate" type="text" value="{user}'s room" maxlength="40">
+          </div>
+          <div class="vc-field">
+            <label for="vcLimit">User limit</label>
+            <div class="vc-limit">
+              <input id="vcLimit" type="range" min="0" max="20" value="6">
+              <output id="vcLimitOut">6</output>
+            </div>
+          </div>
+          <div class="vc-toggles">
+            <label class="switch"><input type="checkbox" id="vcPrivate" checked><span class="switch__ui"></span><span>Private to owner</span></label>
+            <label class="switch"><input type="checkbox" id="vcLocked"><span class="switch__ui"></span><span>Locked on create</span></label>
+            <label class="switch"><input type="checkbox" id="vcHidden"><span class="switch__ui"></span><span>Hidden from list</span></label>
+          </div>
+        </div>
+
+        <div class="vc-preview">
+          <div class="vc-preview__head">Preview &mdash; what the owner sees natively</div>
+          <div class="vc-preview__channel">
+            <span class="vc-preview__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 9.5v5A1.5 1.5 0 0 0 5.5 16h2L12 19.5V4.5L7.5 8h-2A1.5 1.5 0 0 0 4 9.5z"></path>
+                <path d="M16 9.2a4 4 0 0 1 0 5.6"></path>
+              </svg>
+            </span>
+            <span class="vc-preview__name" id="vcPreviewName">Drek's room</span>
+            <span class="vc-preview__badges" id="vcPreviewBadges"></span>
+          </div>
+          <div class="vc-preview__owner">Owner: <b>@Drek</b> &middot; controls: rename, limit, lock, hide, grant, block</div>
+          <div class="vc-preview__members" id="vcPreviewMembers"></div>
+        </div>
+
+        <div class="vc-access">
+          <div class="vc-access__head">
+            <span class="vc-access__title">Room access &mdash; click a member to block or allow</span>
+            <span class="vc-access__count"><b id="vcBlockedCount">0</b> blocked</span>
+          </div>
+          <div class="vc-access__list" id="vcAccessList"></div>
+          <p class="vc-access__note" id="vcAccessNote">Nobody is blocked. The room is open to everyone who can see the hub.</p>
+        </div>
+
+        <div class="lab-log" id="vcLog" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="emotes">
+  <div class="shell">
+    <header class="section__head">
+      <p class="eyebrow" data-reveal>03 &mdash; The Emote Pack</p>
+      <h2 class="section__title" data-reveal>Every bot ships with its own mascot</h2>
+      <p class="section__lede" data-reveal>
+        Anyone can wire up slash commands. I go further and hand over a complete custom emote
+        pack so your members react with your bot, not generic Unicode faces. This is
+        <strong>Peanut</strong>, crafted to be readable at 32 pixels and expressive at any size.
+      </p>
+    </header>
+
+    <div class="emote-wall" id="emoteWall">
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-01.png" alt="Peanut waving hello" width="700" height="700" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_wave:</span><span class="emote-tile__use">Greeting</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-02.png" alt="Peanut holding a green tick sign" width="700" height="700" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_yes:</span><span class="emote-tile__use">Confirmations</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-03.png" alt="Peanut laughing with hand over mouth" width="700" height="700" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_laugh:</span><span class="emote-tile__use">Punchlines</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-04.png" alt="Peanut peeking over a wall" width="700" height="700" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_peek:</span><span class="emote-tile__use">Lurking mods</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-05.png" alt="Peanut with wide shocked eyes" width="700" height="700" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_shock:</span><span class="emote-tile__use">Alerts</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-06.png" alt="Peanut squeeing with joy" width="700" height="700" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_squee:</span><span class="emote-tile__use">Rewards</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-07.png" alt="Peanut holding a red cross sign" width="700" height="700" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_no:</span><span class="emote-tile__use">Denials</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-08.png" alt="Peanut holding a Movie Night sign" width="700" height="700" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_event:</span><span class="emote-tile__use">Event pings</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-09.png" alt="Peanut holding a huge pink heart" width="700" height="700" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_love:</span><span class="emote-tile__use">Thanks</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-10.png" alt="Peanut resting cheeks on both hands" width="700" height="700" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_cozy:</span><span class="emote-tile__use">Chill rooms</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-11.png" alt="Peanut pouting suspiciously" width="700" height="700" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_sus:</span><span class="emote-tile__use">Mod calls</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-12.png" alt="Peanut with eyes closed and a sad expression" width="800" height="800" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_sad:</span><span class="emote-tile__use">Losses</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-13.png" alt="Peanut crying loudly" width="800" height="800" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_sobbing:</span><span class="emote-tile__use">Bankruptcy</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-14.png" alt="Peanut celebrating with confetti and gems" width="800" height="800" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_jackpot:</span><span class="emote-tile__use">Big wins</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-15.png" alt="Peanut annoyed with arms crossed" width="800" height="800" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_grr:</span><span class="emote-tile__use">Rule breaks</span></figcaption>
+      </figure>
+      <figure class="emote-tile" data-reveal>
+        <div class="emote-tile__frame"><img src="assets/emotes/peanut-16.png" alt="Peanut in sunglasses giving a thumbs up" width="800" height="800" loading="lazy" decoding="async"></div>
+        <figcaption><span class="emote-tile__name">:peanut_cool:</span><span class="emote-tile__use">Ship it</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="emote-specs" data-reveal>
+      <div class="emote-specs__item"><b>16</b><span>Unique emotes</span></div>
+      <div class="emote-specs__item"><b>700&ndash;800px</b><span>Source resolution</span></div>
+      <div class="emote-specs__item"><b>Transparent</b><span>PNG alpha</span></div>
+      <div class="emote-specs__item"><b>Ready</b><span>Discord emote export</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--stack" id="stack">
+  <div class="shell">
+    <header class="section__head">
+      <p class="eyebrow" data-reveal>04 &mdash; Under The Hood</p>
+      <h2 class="section__title" data-reveal>The stack I actually run</h2>
+      <p class="section__lede" data-reveal>
+        Chosen for higher uptime and headroom on large servers: sharded gateways,
+        queued writes and observability from day one.
+      </p>
+    </header>
+
+    <div class="stack-grid">
+      <div class="stack-col" data-reveal>
+        <h3><span class="stack-col__dot stack-col__dot--blurple"></span>Runtime &amp; libraries</h3>
+        <ul>
+          <li>Drek Command Handler</li>
+          <li>DrekAI (Reliant on OpenAI)</li>
+          <li>discord.py</li>
+          <li>Sharding</li>
+          <li>Cogs / custom loaders</li>
+        </ul>
+      </div>
+      <div class="stack-col" data-reveal>
+        <h3><span class="stack-col__dot stack-col__dot--ember"></span>Data &amp; caching</h3>
+        <ul>
+          <li>MySQL</li>
+          <li>ProxySQL</li>
+          <li>Json</li>
+          <li>Audit-log event ledger</li>
+        </ul>
+      </div>
+      <div class="stack-col" data-reveal>
+        <h3><span class="stack-col__dot stack-col__dot--mint"></span>Intelligence</h3>
+        <ul>
+          <li>Scikit-learn classifiers</li>
+          <li>LLM tool calling</li>
+          <li>Character n-gram features</li>
+          <li>LLM Sandbox &amp; action guardrails</li>
+        </ul>
+      </div>
+      <div class="stack-col" data-reveal>
+        <h3><span class="stack-col__dot stack-col__dot--rose"></span>Integrations &amp; ops</h3>
+        <ul>
+          <li>Notion API</li>
+          <li>Docker deploys</li>
+          <li>Structured logging</li>
+          <li>Health checks &amp; alerting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--process" id="process">
+  <div class="shell">
+    <header class="section__head">
+      <p class="eyebrow" data-reveal>05 &mdash; How We Work</p>
+      <h2 class="section__title" data-reveal>From first message to live bot</h2>
+    </header>
+
+    <ol class="process">
+      <li class="process__step" data-reveal>
+        <span class="process__num">01</span>
+        <h3>Check out what's up</h3>
+        <p>We map your server: what breaks, what members ask for, what your mods are tired of doing manually.</p>
+      </li>
+      <li class="process__step" data-reveal>
+        <span class="process__num">02</span>
+        <h3>Architecture</h3>
+        <p>Plan of how the system will work will be formed.</p>
+      </li>
+      <li class="process__step" data-reveal>
+        <span class="process__num">03</span>
+        <h3>Testing phase</h3>
+        <p>Bot gets thrown in a test server. Every system lands, gets demonstrated, then gets stress-tested.</p>
+      </li>
+      <li class="process__step" data-reveal>
+        <span class="process__num">04</span>
+        <h3>Mascot &amp; polish</h3>
+        <p>Upon request, a talented artist will create a custom emote pack for the bot/community, to make the bot feel more intentional for the server.</p>
+      </li>
+      <li class="process__step" data-reveal>
+        <span class="process__num">05</span>
+        <h3>Deploy &amp; Host</h3>
+        <p>Hosted & monitored. The bot is now up and running, officially serving your guild.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+
+
+<section class="cta" id="contact">
+  <div class="shell">
+    <div class="cta__panel" data-reveal>
+      <div class="cta__glow" aria-hidden="true"></div>
+      <div class="cta__copy">
+        <p class="eyebrow eyebrow--center">06 &mdash; Let's Build</p>
+        <h2 class="cta__title">Got a server that needs real systems?</h2>
+        <p class="cta__lede">
+          Tell me what your community is struggling with. I will come back with an honest read on
+          what is worth building, what it takes, and how fast it can be live.
+        </p>
+        <div class="cta__actions">
+          <button type="button" class="btn btn--primary btn--lg" id="copyDiscord" data-handle="drek124">
+            <span>Copy my Discord &middot; @drek124</span>
+          </button>
+          <a class="btn btn--outline btn--lg" href="#lab">Replay the demos</a>
+        </div>
+        <p class="cta__note">Response within hours &middot; I got the hosting &middot; You ready?</p>
+      </div>
+      <div class="cta__mascot">
+        <img src="assets/emotes/peanut-16.png" alt="Peanut in sunglasses giving a thumbs up" width="800" height="800" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <div class="footer__brand">
+      <img src="assets/emotes/peanut-04.png" alt="" width="700" height="700" loading="lazy" decoding="async">
+      <div>
+        <strong>DREK</strong>
+        <p>Discord bot engineering, security and community systems.</p>
+      </div>
+    </div>
+    <nav class="footer__nav" aria-label="Footer navigation">
+      <a href="#arsenal">Arsenal</a>
+      <a href="#lab">Live Lab</a>
+      <a href="#emotes">Emotes</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <p class="footer__legal">
+      Drek &middot; <span id="year">2026</span>
+    </p>
+  </div>
+</footer>
+
+<div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5M5 12l7-7 7 7"></path>
+  </svg>
+</button>
+
+<script src="assets/js/app.js" defer></script>
+<script src="assets/js/demos.js" defer></script>
+</body>
+</html>
