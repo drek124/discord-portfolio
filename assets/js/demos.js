@@ -30,7 +30,7 @@
     sobbing: "peanut-13.png",
     jackpot: "peanut-14.png",
     grr: "peanut-15.png",
-    cool: "peanut-16.png"
+    officer: "peanut-16.png"
   };
 
   function emote(key) {
@@ -462,11 +462,6 @@
         button.style.setProperty("--ink", color.ink);
         button.setAttribute("data-colour", color.name);
 
-        // var label = document.createElement("span");
-        // label.className = "colour-btn__label";
-        // label.textContent = zalgo(color.name, 1);
-
-        // button.appendChild(label);
         button.addEventListener("click", function () {
           choose(color, button);
         });
