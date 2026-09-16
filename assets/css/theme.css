@@ -3560,6 +3560,7 @@ body.cursor-hot .cursor-dot {
   font-family: var(--font-mono);
   font-size: 11.5px;
   color: var(--ink-faint);
+  text-align: center;
 }
 
 .toast-stack {
