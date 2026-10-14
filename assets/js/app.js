@@ -543,6 +543,8 @@
       { text: "[notion]    synced 24 team tasks · 6 due today", cls: "t-info", delay: 340 },
       { text: "[agent]     listening for natural-language ops requests", cls: "t-info", delay: 340 },
       { text: "[voice]     join-to-create hub online · 7 rooms owned", cls: "t-dim", delay: 320 },
+      { text: "[levels]    Mira reached level 9 · @Veteran assigned", cls: "t-ok", delay: 340 },
+      { text: "[github]    3 new commits on main · 7 files · +214 −48", cls: "t-info", delay: 340 },
       { text: "$ all systems nominal. drek is watching. 🥜", cls: "t-ok", delay: 380 }
     ];
 

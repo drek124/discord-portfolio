@@ -1605,4 +1605,533 @@
     log("Native owner controls mirrored: rename, limit, lock, hide, grant, block", "info");
     log("Voice channels already carry text chat " + DOT + " no paired channel needed", "info");
   })();
+
+  (function leveling() {
+    var msgBtn = qs("#lvlMsg");
+    var spamBtn = qs("#lvlSpam");
+    var voiceBtn = qs("#lvlVoice");
+    var resetBtn = qs("#lvlReset");
+    var levelEl = qs("#lvlLevel");
+    var rankEl = qs("#lvlRank");
+    var xpEl = qs("#lvlXp");
+    var needEl = qs("#lvlNeed");
+    var totalEl = qs("#lvlTotal");
+    var fillEl = qs("#lvlFill");
+    var cooldownEl = qs("#lvlCooldown");
+    var rewardsEl = qs("#lvlRewards");
+    var boardEl = qs("#lvlBoard");
+    var stateEl = qs("#lvlState");
+    var log = makeLogger("lvlLog", 50);
+
+    if (!msgBtn || !levelEl || !boardEl) {
+      return;
+    }
+
+    var START_TOTAL = 890;
+    var COOLDOWN_MS = 4000;
+    var VOICE_TICK_MS = reduceMotion ? 120 : 200;
+    var VOICE_XP_PER_MIN = 10;
+
+    var rewards = [
+      { level: 5, role: "Regular", hue: 150 },
+      { level: 7, role: "Active", hue: 200 },
+      { level: 9, role: "Veteran", hue: 265 },
+      { level: 12, role: "Legend", hue: 25 }
+    ];
+
+    var others = [
+      { name: "Mira", hue: 200, total: 3400 },
+      { name: "Kae", hue: 150, total: 2350 },
+      { name: "Rin", hue: 340, total: 1300 },
+      { name: "Ash", hue: 45, total: 640 }
+    ];
+
+    var total = START_TOTAL;
+    var cooldownUntil = 0;
+    var voiceTimer = null;
+    var voiceMinutes = 0;
+    var voiceXp = 0;
+
+    function need(level) {
+      return 5 * level * level + 50 * level + 100;
+    }
+
+    function progress(xpTotal) {
+      var level = 0;
+      var rest = xpTotal;
+      while (rest >= need(level)) {
+        rest -= need(level);
+        level += 1;
+      }
+      return { level: level, xp: rest, need: need(level) };
+    }
+
+    function standings() {
+      var rows = others.map(function (row) {
+        return { name: row.name, hue: row.hue, total: row.total, me: false };
+      });
+      rows.push({ name: "you", hue: 25, total: total, me: true });
+      rows.sort(function (a, b) { return b.total - a.total; });
+      return rows;
+    }
+
+    function renderRewards(level) {
+      rewardsEl.innerHTML = "";
+      rewards.forEach(function (reward) {
+        var item = document.createElement("li");
+        item.className = "lvl-reward" + (level >= reward.level ? " is-unlocked" : "");
+        item.style.setProperty("--h", String(reward.hue));
+        var lvl = document.createElement("span");
+        lvl.className = "lvl-reward__lvl";
+        lvl.textContent = "LV " + reward.level;
+        var role = document.createElement("span");
+        role.className = "lvl-reward__role";
+        role.textContent = "@" + reward.role;
+        var state = document.createElement("span");
+        state.className = "lvl-reward__state";
+        state.textContent = level >= reward.level ? "unlocked" : "locked";
+        item.appendChild(lvl);
+        item.appendChild(role);
+        item.appendChild(state);
+        rewardsEl.appendChild(item);
+      });
+    }
+
+    function renderBoard() {
+      boardEl.innerHTML = "";
+      standings().forEach(function (row, index) {
+        var item = document.createElement("li");
+        item.className = "lvl-board__row" + (row.me ? " is-me" : "");
+        var pos = document.createElement("span");
+        pos.className = "lvl-board__pos";
+        pos.textContent = "#" + (index + 1);
+        var dot = document.createElement("span");
+        dot.className = "task-card__dot";
+        dot.style.setProperty("--h", String(row.hue));
+        var name = document.createElement("span");
+        name.className = "lvl-board__name";
+        name.textContent = row.me ? "@you" : row.name;
+        var lvl = document.createElement("span");
+        lvl.className = "lvl-board__lvl";
+        lvl.textContent = "LV " + progress(row.total).level + " " + DOT + " " + formatNumber(row.total) + " XP";
+        item.appendChild(pos);
+        item.appendChild(dot);
+        item.appendChild(name);
+        item.appendChild(lvl);
+        boardEl.appendChild(item);
+      });
+    }
+
+    function paint() {
+      var p = progress(total);
+      levelEl.textContent = String(p.level);
+      xpEl.textContent = formatNumber(p.xp);
+      needEl.textContent = formatNumber(p.need);
+      totalEl.textContent = formatNumber(total) + " total";
+      fillEl.style.width = (p.xp / p.need * 100).toFixed(1) + "%";
+      var rows = standings();
+      for (var i = 0; i < rows.length; i += 1) {
+        if (rows[i].me) {
+          rankEl.textContent = "#" + (i + 1);
+        }
+      }
+      renderRewards(p.level);
+      renderBoard();
+    }
+
+    function grant(amount, source) {
+      var beforeLevel = progress(total).level;
+      var beforeRank = rankEl.textContent;
+      total += amount;
+      var afterLevel = progress(total).level;
+      paint();
+
+      if (afterLevel > beforeLevel) {
+        log("LEVEL UP " + DOT + " @you reached level " + afterLevel + " via " + source, "hot");
+        sfx.win();
+        toast("Level up! You reached level " + afterLevel, "ok");
+        rewards.forEach(function (reward) {
+          if (reward.level > beforeLevel && reward.level <= afterLevel) {
+            log("Role reward " + ARROW + " @" + reward.role + " assigned for level " + reward.level, "ok");
+            toast("Unlocked role @" + reward.role, "ok");
+          }
+        });
+      }
+
+      if (rankEl.textContent !== beforeRank) {
+        log("Leaderboard " + DOT + " @you climbed to " + rankEl.textContent, "ok");
+      }
+    }
+
+    function startCooldown() {
+      cooldownUntil = Date.now() + COOLDOWN_MS;
+      if (!cooldownEl) {
+        return;
+      }
+      cooldownEl.style.transition = "none";
+      cooldownEl.style.width = "100%";
+      void cooldownEl.offsetWidth;
+      cooldownEl.style.transition = "width " + COOLDOWN_MS + "ms linear";
+      cooldownEl.style.width = "0%";
+    }
+
+    function sendMessage() {
+      var now = Date.now();
+      if (now < cooldownUntil) {
+        var left = ((cooldownUntil - now) / 1000).toFixed(1);
+        log("Message received " + DOT + " cooldown " + left + "s left " + DOT + " no XP", "warn");
+        sfx.tick();
+        return;
+      }
+      var amount = 15 + Math.floor(Math.random() * 11);
+      log("Message received " + DOT + " +" + amount + " XP", "info");
+      sfx.click();
+      startCooldown();
+      grant(amount, "chat");
+    }
+
+    function stopVoice(silent) {
+      if (!voiceTimer) {
+        return;
+      }
+      window.clearInterval(voiceTimer);
+      voiceTimer = null;
+      voiceBtn.textContent = "Join voice";
+      voiceBtn.setAttribute("aria-pressed", "false");
+      stateEl.textContent = "TRACKING";
+      stateEl.classList.remove("is-ok");
+      if (!silent) {
+        log("Left voice after " + voiceMinutes + " min " + DOT + " +" + voiceXp + " XP earned", "ok");
+      }
+    }
+
+    function startVoice() {
+      voiceMinutes = 0;
+      voiceXp = 0;
+      voiceBtn.textContent = "Leave voice";
+      voiceBtn.setAttribute("aria-pressed", "true");
+      stateEl.textContent = "IN VOICE";
+      stateEl.classList.add("is-ok");
+      log("Joined voice " + DOT + " +" + VOICE_XP_PER_MIN + " XP per minute (1 min = " + (VOICE_TICK_MS / 1000) + "s here)", "info");
+      sfx.confirm();
+      voiceTimer = window.setInterval(function () {
+        voiceMinutes += 1;
+        voiceXp += VOICE_XP_PER_MIN;
+        if (voiceMinutes % 15 === 0) {
+          log("Voice " + DOT + " " + voiceMinutes + " min connected " + DOT + " +" + voiceXp + " XP so far", "info");
+        }
+        grant(VOICE_XP_PER_MIN, "voice");
+      }, VOICE_TICK_MS);
+    }
+
+    msgBtn.addEventListener("click", sendMessage);
+
+    spamBtn.addEventListener("click", function () {
+      log("Spam burst " + DOT + " 5 messages in under a second", "warn");
+      for (var i = 0; i < 5; i += 1) {
+        window.setTimeout(sendMessage, i * 160);
+      }
+    });
+
+    voiceBtn.addEventListener("click", function () {
+      if (voiceTimer) {
+        stopVoice(false);
+        sfx.click();
+      } else {
+        startVoice();
+      }
+    });
+
+    resetBtn.addEventListener("click", function () {
+      stopVoice(true);
+      total = START_TOTAL;
+      cooldownUntil = 0;
+      if (cooldownEl) {
+        cooldownEl.style.transition = "none";
+        cooldownEl.style.width = "0%";
+      }
+      paint();
+      log("Progress reset to level " + progress(total).level, "info");
+      sfx.click();
+    });
+
+    paint();
+    log("Leveling online " + DOT + " 15" + String.fromCharCode(8211) + "25 XP per message " + DOT + " 60s cooldown (4s here)", "ok");
+    log("Voice XP " + DOT + " " + VOICE_XP_PER_MIN + " XP per minute connected", "info");
+  })();
+
+  (function githubTracker() {
+    var pushBtn = qs("#ghPush");
+    var pushManyBtn = qs("#ghPushMany");
+    var clearBtn = qs("#ghClear");
+    var feed = qs("#ghFeed");
+    var stateEl = qs("#ghState");
+    var commitsEl = qs("#ghCommits");
+    var addsEl = qs("#ghAdds");
+    var delsEl = qs("#ghDels");
+    var log = makeLogger("ghLog", 50);
+
+    if (!feed || !pushBtn) {
+      return;
+    }
+
+    var MAX_SHOWN = 4;
+    var MINUS = String.fromCharCode(8722);
+
+    var authors = {
+      Drek: 25,
+      Mira: 200,
+      Kae: 150,
+      Rin: 340
+    };
+
+    var pool = [
+      {
+        author: "Drek",
+        message: "Add blackjack split-hand support",
+        body: "Splits pay out per hand and respect the bank protection limit.",
+        files: [
+          { path: "cogs/economy/blackjack.py", status: "M", add: 84, del: 19 },
+          { path: "cogs/economy/payouts.py", status: "M", add: 12, del: 4 },
+          { path: "tests/test_blackjack.py", status: "A", add: 61, del: 0 }
+        ]
+      },
+      {
+        author: "Mira",
+        message: "Retrain bot-name classifier on August dump",
+        body: "",
+        files: [
+          { path: "ml/train.py", status: "M", add: 23, del: 9 },
+          { path: "ml/models/namecls_v7.pkl", status: "A", add: 0, del: 0 },
+          { path: "ml/models/namecls_v6.pkl", status: "D", add: 0, del: 0 }
+        ]
+      },
+      {
+        author: "Kae",
+        message: "Fix join gate timer not resetting on rejoin",
+        body: "Strikes now clear when a member leaves and rejoins within 10 minutes.",
+        files: [
+          { path: "cogs/joingate/captcha.py", status: "M", add: 14, del: 6 }
+        ]
+      },
+      {
+        author: "Rin",
+        message: "Voice hub: mirror block list on room transfer",
+        body: "",
+        files: [
+          { path: "cogs/voice/hub.py", status: "M", add: 38, del: 11 },
+          { path: "cogs/voice/permissions.py", status: "M", add: 22, del: 15 }
+        ]
+      },
+      {
+        author: "Drek",
+        message: "Leveling: role rewards and voice XP",
+        body: "Rewards are assigned on level up and back-filled for existing members.",
+        files: [
+          { path: "cogs/levels/xp.py", status: "M", add: 57, del: 12 },
+          { path: "cogs/levels/rewards.py", status: "A", add: 74, del: 0 },
+          { path: "cogs/levels/rank_card.py", status: "M", add: 18, del: 7 },
+          { path: "config/levels.json", status: "M", add: 9, del: 2 }
+        ]
+      },
+      {
+        author: "Mira",
+        message: "Notion tracker: due-date reminders in staff channel",
+        body: "",
+        files: [
+          { path: "cogs/notion/tracker.py", status: "M", add: 41, del: 8 },
+          { path: "cogs/notion/reminders.py", status: "A", add: 52, del: 0 }
+        ]
+      },
+      {
+        author: "Kae",
+        message: "Remove legacy anti-nuke thresholds",
+        body: "",
+        files: [
+          { path: "cogs/antinuke/legacy_thresholds.py", status: "D", add: 0, del: 96 },
+          { path: "cogs/antinuke/tripwire.py", status: "M", add: 7, del: 21 }
+        ]
+      },
+      {
+        author: "Rin",
+        message: "Bump discord.py and pin dependencies",
+        body: "",
+        files: [
+          { path: "requirements.txt", status: "M", add: 6, del: 6 }
+        ]
+      }
+    ];
+
+    var order = shuffle(pool);
+    var cursor = 0;
+    var stats = { commits: 0, add: 0, del: 0 };
+    var busy = false;
+
+    function sha() {
+      var out = "";
+      for (var i = 0; i < 7; i += 1) {
+        out += "0123456789abcdef".charAt(Math.floor(Math.random() * 16));
+      }
+      return out;
+    }
+
+    function nextCommit() {
+      if (cursor >= order.length) {
+        order = shuffle(pool);
+        cursor = 0;
+      }
+      var commit = order[cursor];
+      cursor += 1;
+      return commit;
+    }
+
+    function el(tag, className, text) {
+      var node = document.createElement(tag);
+      if (className) {
+        node.className = className;
+      }
+      if (text !== undefined) {
+        node.textContent = text;
+      }
+      return node;
+    }
+
+    function paintStats() {
+      commitsEl.textContent = String(stats.commits);
+      addsEl.textContent = "+" + formatNumber(stats.add);
+      delsEl.textContent = MINUS + formatNumber(stats.del);
+    }
+
+    function render(commit, hash) {
+      var adds = 0;
+      var dels = 0;
+      commit.files.forEach(function (file) {
+        adds += file.add;
+        dels += file.del;
+      });
+
+      var card = el("article", "gh-commit");
+
+      var head = el("div", "gh-commit__head");
+      var avatar = el("span", "gh-commit__avatar", commit.author.charAt(0));
+      avatar.style.setProperty("--h", String(authors[commit.author]));
+      var who = el("span", "gh-commit__who");
+      who.appendChild(el("strong", "", commit.author));
+      who.appendChild(document.createTextNode(" committed to "));
+      who.appendChild(el("b", "", "main"));
+      head.appendChild(avatar);
+      head.appendChild(who);
+      head.appendChild(el("time", "gh-commit__time", clockStamp()));
+
+      var msg = el("div", "gh-commit__msg");
+      msg.appendChild(el("code", "gh-commit__sha", hash));
+      msg.appendChild(el("span", "", commit.message));
+
+      card.appendChild(head);
+      card.appendChild(msg);
+      if (commit.body) {
+        card.appendChild(el("p", "gh-commit__body", commit.body));
+      }
+
+      var files = el("ul", "gh-files");
+      commit.files.forEach(function (file) {
+        var row = el("li", "gh-file");
+        row.appendChild(el("span", "gh-file__status is-" + file.status, file.status));
+        row.appendChild(el("span", "gh-file__path", file.path));
+        var counts = el("span", "gh-file__counts");
+        if (file.add === 0 && file.del === 0) {
+          counts.appendChild(el("span", "gh-file__bin", "binary"));
+        } else {
+          counts.appendChild(el("span", "gh-add", "+" + file.add));
+          counts.appendChild(el("span", "gh-del", MINUS + file.del));
+        }
+        row.appendChild(counts);
+        files.appendChild(row);
+      });
+      card.appendChild(files);
+
+      var foot = el("div", "gh-commit__foot");
+      foot.appendChild(el("span", "", commit.files.length + (commit.files.length === 1 ? " file" : " files") + " changed"));
+      var bar = el("span", "gh-diffbar");
+      var sum = adds + dels;
+      var addShare = sum ? Math.round(adds / sum * 5) : 0;
+      for (var i = 0; i < 5; i += 1) {
+        var cell = el("i", sum ? (i < addShare ? "is-add" : "is-del") : "");
+        bar.appendChild(cell);
+      }
+      foot.appendChild(bar);
+      var totals = el("span", "gh-commit__totals");
+      totals.appendChild(el("span", "gh-add", "+" + adds));
+      totals.appendChild(el("span", "gh-del", MINUS + dels));
+      foot.appendChild(totals);
+      card.appendChild(foot);
+
+      return { node: card, adds: adds, dels: dels };
+    }
+
+    function push(silent) {
+      var commit = nextCommit();
+      var hash = sha();
+      var built = render(commit, hash);
+      feed.insertBefore(built.node, feed.firstChild);
+      while (feed.children.length > MAX_SHOWN) {
+        feed.removeChild(feed.lastChild);
+      }
+      stats.commits += 1;
+      stats.add += built.adds;
+      stats.del += built.dels;
+      paintStats();
+
+      if (silent) {
+        return;
+      }
+      log("New commit " + hash + " by " + commit.author + " on main", "info");
+      log("Posted to #dev-log " + DOT + " " + commit.files.length + " files " + DOT + " +" + built.adds + " " + MINUS + built.dels, "ok");
+      sfx.confirm();
+      stateEl.textContent = "NEW COMMIT";
+      stateEl.classList.add("is-ok");
+      window.clearTimeout(push.reset);
+      push.reset = window.setTimeout(function () {
+        stateEl.textContent = "WATCHING";
+        stateEl.classList.remove("is-ok");
+      }, 1400);
+    }
+
+    pushBtn.addEventListener("click", function () {
+      if (!busy) {
+        push(false);
+      }
+    });
+
+    pushManyBtn.addEventListener("click", function () {
+      if (busy) {
+        return;
+      }
+      busy = true;
+      pushBtn.disabled = true;
+      pushManyBtn.disabled = true;
+      log("Push received " + DOT + " 3 commits on main", "hot");
+      var sent = 0;
+      var timer = window.setInterval(function () {
+        push(false);
+        sent += 1;
+        if (sent >= 3) {
+          window.clearInterval(timer);
+          busy = false;
+          pushBtn.disabled = false;
+          pushManyBtn.disabled = false;
+        }
+      }, reduceMotion ? 60 : 520);
+    });
+
+    clearBtn.addEventListener("click", function () {
+      feed.innerHTML = "";
+      log("Feed cleared " + DOT + " still watching main", "info");
+      sfx.click();
+    });
+
+    push(true);
+    log("Tracking drek124/drek-bot " + DOT + " branch main " + ARROW + " #dev-log", "ok");
+    log("Press Push to send a commit through", "info");
+  })();
 })();

@@ -1640,6 +1640,8 @@ body.cursor-hot .cursor-dot {
 .disk--notion { --accent: var(--blurple); --accent-bright: var(--blurple-bright); }
 .disk--agent { --accent: var(--mint); --accent-bright: var(--mint-bright); }
 .disk--voice { --accent: var(--ember); --accent-bright: var(--ember-bright); }
+.disk--level { --accent: var(--rose); --accent-bright: var(--rose-bright); }
+.disk--github { --accent: var(--mint); --accent-bright: var(--mint-bright); }
 
 .disk__bar {
   display: flex;
@@ -3663,6 +3665,424 @@ body.cursor-hot .cursor-dot {
 [data-reveal].is-revealed {
   opacity: 1;
   transform: none;
+}
+
+.arsenal-grid--more {
+  margin-top: 24px;
+}
+
+.rank-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-soft);
+  background: linear-gradient(135deg, rgba(238, 91, 138, 0.14), rgba(3, 4, 9, 0.6) 60%);
+}
+
+.rank-card__avatar {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  padding: 4px;
+  border: 2px solid var(--rose);
+  background: rgba(3, 4, 9, 0.7);
+  box-shadow: 0 0 22px rgba(238, 91, 138, 0.35);
+}
+
+.rank-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.rank-card__main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rank-card__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rank-card__name {
+  font-family: var(--font-display);
+  font-size: 18px;
+}
+
+.rank-card__stats {
+  display: flex;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+
+.rank-card__stats b {
+  font-size: 20px;
+  color: var(--rose-bright);
+  margin-left: 4px;
+}
+
+.rank-card__track {
+  height: 12px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+}
+
+.rank-card__fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--rose), var(--ember-bright));
+  box-shadow: 0 0 14px rgba(238, 91, 138, 0.5);
+  transition: width 0.35s var(--ease-out);
+}
+
+.rank-card__xp {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}
+
+.rank-card__xp b {
+  color: var(--ink);
+}
+
+.lvl-cooldown {
+  height: 3px;
+  margin-top: -12px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.lvl-cooldown span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--warn);
+}
+
+.lvl-split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.lvl-panel {
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-soft);
+  background: rgba(3, 4, 9, 0.55);
+}
+
+.lvl-panel__head {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.lvl-rewards,
+.lvl-board {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lvl-reward {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 9px;
+  font-size: 13px;
+  border: 1px solid var(--line-soft);
+  opacity: 0.5;
+  transition: opacity 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+
+.lvl-reward.is-unlocked {
+  opacity: 1;
+  border-color: hsl(var(--h, 220) 62% 55% / 0.5);
+  background: hsl(var(--h, 220) 62% 55% / 0.1);
+}
+
+.lvl-reward__lvl {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  min-width: 36px;
+}
+
+.lvl-reward__role {
+  font-weight: 600;
+  color: hsl(var(--h, 220) 72% 72%);
+}
+
+.lvl-reward__state {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+}
+
+.lvl-reward.is-unlocked .lvl-reward__state {
+  color: var(--ok);
+}
+
+.lvl-board__row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 10px;
+  border-radius: 9px;
+  font-size: 13px;
+}
+
+.lvl-board__row.is-me {
+  background: rgba(238, 91, 138, 0.12);
+  outline: 1px solid rgba(238, 91, 138, 0.4);
+}
+
+.lvl-board__pos {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  min-width: 22px;
+}
+
+.lvl-board__name {
+  font-weight: 600;
+}
+
+.lvl-board__lvl {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+.gh-meta {
+  white-space: normal;
+}
+
+.gh-add { color: var(--ok); }
+.gh-del { color: var(--danger-bright); }
+.gh-meta b.gh-add { color: var(--ok); }
+.gh-meta b.gh-del { color: var(--danger-bright); }
+
+.gh-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.gh-feed:empty::before {
+  content: "No commits yet. Push something.";
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+  padding: 14px 4px;
+}
+
+.gh-commit {
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-soft);
+  border-left: 4px solid var(--mint);
+  background: rgba(3, 4, 9, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: card-in 0.4s var(--ease-out) backwards;
+}
+
+.gh-commit__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.gh-commit__head strong {
+  color: var(--ink);
+}
+
+.gh-commit__head b {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--mint-bright);
+}
+
+.gh-commit__avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: hsl(var(--h, 220) 62% 50%);
+}
+
+.gh-commit__time {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+}
+
+.gh-commit__msg {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.gh-commit__sha {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 1px 7px;
+  border-radius: 6px;
+  color: var(--mint-bright);
+  background: rgba(47, 214, 168, 0.1);
+}
+
+.gh-commit__body {
+  margin: -4px 0 0;
+  font-size: 12.8px;
+  color: var(--ink-faint);
+}
+
+.gh-files {
+  list-style: none;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 11.8px;
+}
+
+.gh-file {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.gh-file__status {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.gh-file__status.is-A { color: var(--ok); background: rgba(61, 220, 132, 0.14); }
+.gh-file__status.is-M { color: var(--warn); background: rgba(245, 197, 66, 0.14); }
+.gh-file__status.is-D { color: var(--danger-bright); background: rgba(238, 75, 75, 0.14); }
+
+.gh-file__path {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-soft);
+}
+
+.gh-file__counts {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.gh-file__bin {
+  color: var(--ink-faint);
+}
+
+.gh-commit__foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.gh-diffbar {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.gh-diffbar i {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.gh-diffbar i.is-add { background: var(--ok); }
+.gh-diffbar i.is-del { background: var(--danger); }
+
+.gh-commit__totals {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 560px) {
+  .lvl-split {
+    grid-template-columns: 1fr;
+  }
+
+  .rank-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .rank-card__main {
+    width: 100%;
+  }
 }
 
 @media (max-width: 1080px) {
