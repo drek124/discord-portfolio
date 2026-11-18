@@ -599,6 +599,14 @@
     }
   }
 
+  qsa("#dashMock .dash-toggle").forEach(function (toggle) {
+    toggle.addEventListener("click", function () {
+      var on = toggle.getAttribute("aria-pressed") !== "true";
+      toggle.setAttribute("aria-pressed", on ? "true" : "false");
+      sfx.click();
+    });
+  });
+
   var mascotMain = qs("#mascotMain");
   var swapper = qs("#emoteSwapper");
 

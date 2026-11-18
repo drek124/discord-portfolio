@@ -48,6 +48,7 @@
     </a>
 
     <nav class="nav" id="nav" aria-label="Section navigation">
+      <a href="#live">drek.app</a>
       <a href="#arsenal">Arsenal</a>
       <a href="#lab">Live Lab</a>
       <a href="#emotes">Emotes</a>
@@ -195,6 +196,71 @@
       <span>Leveling &amp; Rank Cards</span><span class="sep">&#9670;</span>
       <span>GitHub Repo Tracker</span><span class="sep">&#9670;</span>
       <span>Custom Mascot Emotes</span><span class="sep">&#9670;</span>
+      <span>drek.app Dashboard</span><span class="sep">&#9670;</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--live" id="live">
+  <div class="shell live-grid">
+    <div class="live__copy">
+      <p class="eyebrow" data-reveal><span class="pulse-dot"></span> Now live &mdash; drek.app</p>
+      <h2 class="section__title" data-reveal>My own public bot, with a real dashboard</h2>
+      <p class="section__lede" data-reveal>
+        Everything on this page runs for real in <strong>drek</strong>, my free public bot. Log in with Discord,
+        pick a server and set it all up from the browser: join gate, mod logs, custom VCs, chatter, economy channels
+        and command blocking. No slash-command config hell.
+      </p>
+
+      <ul class="live__points" data-reveal>
+        <li>Discord OAuth login, only shows servers you actually manage</li>
+        <li>Per-server settings for every module, saved instantly</li>
+        <li>Full command browser with every text &amp; slash command</li>
+        <li>100% free, no paywalls, no data selling</li>
+      </ul>
+
+      <dl class="live__stats" data-reveal>
+        <div><dt>Commands processed</dt><dd>30k+</dd></div>
+        <div><dt>Users</dt><dd>1k+</dd></div>
+        <div><dt>Spammers flagged</dt><dd>2k+</dd></div>
+      </dl>
+
+      <div class="hero__cta" data-reveal>
+        <a class="btn btn--primary" href="https://drek.app" target="_blank" rel="noopener">
+          <span>Visit drek.app</span>
+          <span class="btn__arrow" aria-hidden="true">&#8599;</span>
+        </a>
+        <a class="btn btn--outline" href="https://drek.app/dashboard/" target="_blank" rel="noopener">Open the dashboard</a>
+      </div>
+    </div>
+
+    <div class="live__visual" data-reveal>
+      <div class="browser" data-tilt>
+        <div class="browser__bar">
+          <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
+          <span class="browser__url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>drek.app/dashboard</span>
+        </div>
+        <div class="browser__body">
+          <div class="dash__head">
+            <img src="assets/img/drek-mark.png" alt="drek logo" width="512" height="512" loading="lazy" decoding="async">
+            <div>
+              <strong>Your server</strong>
+              <span>Dashboard &middot; server settings</span>
+            </div>
+            <span class="chip chip--mint">Online</span>
+          </div>
+          <ul class="dash__list" id="dashMock">
+            <li><span>Joingate CAPTCHA</span><button type="button" class="dash-toggle" aria-pressed="true" aria-label="Toggle Joingate CAPTCHA"></button></li>
+            <li><span>Drek Chatter</span><button type="button" class="dash-toggle" aria-pressed="true" aria-label="Toggle Drek Chatter"></button></li>
+            <li><span>Custom VCs</span><button type="button" class="dash-toggle" aria-pressed="true" aria-label="Toggle Custom VCs"></button></li>
+            <li><span>Mod logs</span><button type="button" class="dash-toggle" aria-pressed="true" aria-label="Toggle Mod logs"></button></li>
+            <li><span>Message logger</span><button type="button" class="dash-toggle" aria-pressed="false" aria-label="Toggle Message logger"></button></li>
+            <li><span>Bump reminder</span><button type="button" class="dash-toggle" aria-pressed="false" aria-label="Toggle Bump reminder"></button></li>
+            <li><span>Announce joins &amp; leaves</span><button type="button" class="dash-toggle" aria-pressed="true" aria-label="Toggle join and leave announcements"></button></li>
+          </ul>
+          <p class="dash__foot">Mockup &middot; the real thing lives at drek.app</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1277,6 +1343,7 @@
       </div>
     </div>
     <nav class="footer__nav" aria-label="Footer navigation">
+      <a href="https://drek.app" target="_blank" rel="noopener">drek.app</a>
       <a href="#arsenal">Arsenal</a>
       <a href="#lab">Live Lab</a>
       <a href="#emotes">Emotes</a>
